@@ -5,6 +5,8 @@ description: >-
   managed Prometheus. Use when configuring GKE monitoring, setting up GKE logging,
   or configuring Prometheus metrics collection. Don't use to configure local
   application logging frameworks or external APMs outside GKE.
+metadata:
+  category: CloudObservabilityAndMonitoring
 ---
 
 # GKE Observability

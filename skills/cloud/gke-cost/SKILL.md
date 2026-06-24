@@ -5,6 +5,8 @@ description: >-
   Use when optimizing GKE costs, rightsizing GKE workloads, or configuring GKE
   Spot VMs. Don't use for general compute class provisioning or GPU Selection
   (use gke-compute-classes instead).
+metadata:
+  category: CloudObservabilityAndMonitoring
 ---
 
 # GKE Cost Optimization

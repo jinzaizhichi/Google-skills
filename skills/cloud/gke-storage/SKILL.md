@@ -5,6 +5,8 @@ description: >-
   FUSE. Use when configuring GKE storage, creating PVCs, or setting up GCS FUSE
   on GKE. Don't use for database administration or replication strategies
   outside volume provisioning context.
+metadata:
+  category: Storage
 ---
 
 # GKE Storage

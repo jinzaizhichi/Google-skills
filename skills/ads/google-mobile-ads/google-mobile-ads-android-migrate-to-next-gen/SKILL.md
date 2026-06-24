@@ -8,8 +8,8 @@ description: Migrates Android applications from the old, legacy Google Mobile
   Android codebase from the old, legacy GMA SDK to GMA Next-Gen SDK.
 metadata:
   version: 1.1.0
+  category: GoogleAds
 ---
-
 # AI Migration Agent Instructions for the Google Mobile Ads SDK
 
 ## Migration Workflow

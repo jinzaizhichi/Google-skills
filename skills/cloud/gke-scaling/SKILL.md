@@ -5,6 +5,8 @@ description: >-
   (NAP). Use when configuring GKE autoscaling, setting up GKE HPA, setting up
   GKE VPA, or configuring GKE NAP. Don't use for configuring static cluster sizes
   or setting node-level machine styles directly (use gke-compute-classes instead).
+metadata:
+  category: Containers
 ---
 
 # GKE Workload Scaling

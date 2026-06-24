@@ -1,5 +1,7 @@
 ---
 name: gke-basics
+metadata:
+  category: Containers
 description: >-
   Core GKE cluster discovery and hub. Use to route to specialized GKE skills.
   Do not use for specialized tasks (networking, security, etc.) directly.

@@ -1,5 +1,7 @@
 ---
 name: google-cloud-recipe-onboarding
+metadata:
+  category: GettingStarted
 description: >-
   Guides a developer's first steps on Google Cloud, covering account creation,
   billing setup, project management, and deploying a first resource.
@@ -45,10 +47,12 @@ For an individual developer, onboarding to Google Cloud involves verifying local
 Before soliciting input or proposing mutations, silently audit the host system's active tooling and environment status.
 
 1. Check if the `gcloud` CLI binary is installed and accessible:
+   
    ```bash
    which gcloud
    ```
 2. Check if there is an active authenticated identity session:
+   
    ```bash
    gcloud auth list --format="json"
    ```
@@ -62,6 +66,7 @@ Before soliciting input or proposing mutations, silently audit the host system's
 Authorize the gcloud CLI to access Google Cloud using the developer's Google Account, and verify that the account is appropriate for standalone developer onboarding.
 
 1. **Execute Credentials Authentication:**
+   
    ```bash
    gcloud auth login
    ```
@@ -73,12 +78,14 @@ Authorize the gcloud CLI to access Google Cloud using the developer's Google Acc
    > 3. Do not attempt project creation or resource configuration until authentication is completed successfully.
 
 2. **Verify Active Identity:**
+   
    ```bash
    gcloud config get-value account --format="json"
    ```
 
 3. **Programmatic Enterprise Routing Guardrail:**
    Before proceeding, verify if the account is bound to a corporate organization, as enterprise setups must follow a different architecture:
+   
    ```bash
    gcloud organizations list --format="json"
    ```
@@ -96,11 +103,13 @@ Google Cloud resources are organized into **Projects**. When developers sign up 
 
 1. **Silent Project Discovery:**
    List active, accessible projects (limited to prevent context window overflow):
+   
    ```bash
    gcloud projects list --filter="lifecycleState=ACTIVE" --limit=20 --format="json"
    ```
 2. **Reuse Existing Project (Recommended):**
    If the list returns an active project, present it to the developer and propose setting it as the default working project:
+   
    ```bash
    gcloud config set project {PROJECT_ID} --quiet
    ```
@@ -126,10 +135,12 @@ Google Cloud resources are organized into **Projects**. When developers sign up 
       - Automatically append a random 4-digit suffix (e.g., changing `my-project` to `my-project-8472`).
       - Propose this new available project ID to the developer and re-solicit consent before retrying.
    - **Execute Project Creation**: Once explicit user consent is confirmed:
+     
      ```bash
      gcloud projects create {PROJECT_ID} --name="{PROJECT_NAME}" --quiet --format="json"
      ```
    - Set the active working project:
+     
      ```bash
      gcloud config set project {PROJECT_ID} --quiet
      ```
@@ -142,17 +153,20 @@ To deploy resources on Google Cloud, your project must be linked to an active Cl
 
 1. **Audit Billing Status:**
    Check if the active project is already linked to a billing account:
+   
    ```bash
    gcloud billing projects describe {PROJECT_ID} --format="json"
    ```
 2. If the output contains `"billingEnabled": true`, skip linkage and proceed immediately to Section 5: Skill Chaining (Spend Controls & Workloads).
 3. **Discover Available Billing Accounts:**
    If the project is unlinked, query the available billing account handles linked to the authenticated user identity:
+   
    ```bash
    gcloud billing accounts list --format="json"
    ```
 4. **Link Billing Account:**
    Propose linking the project to the discovered Billing Account ID, and execute:
+   
    ```bash
    gcloud billing projects link {PROJECT_ID} --billing-account={BILLING_ACCOUNT_ID} --format="json"
    ```
@@ -183,18 +197,22 @@ Onboarding setup is now complete. To safeguard your environment and deploy workl
 After completing the onboarding steps, programmatically verify the completed environment state using these diagnostic commands:
 
 1. **Verify CLI Installation:**
+   
    ```bash
    which gcloud
    ```
 2. **Verify Authenticated Identity:**
+   
    ```bash
    gcloud config get-value account
    ```
 3. **Verify Project Workspace Existence:**
+   
    ```bash
    gcloud projects describe {PROJECT_ID} --format="json"
    ```
 4. **Verify Billing Linkage** (Ensure the JSON output contains `"billingEnabled": true`):
+   
    ```bash
    gcloud billing projects describe {PROJECT_ID} --format="json"
    ```

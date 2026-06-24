@@ -5,8 +5,8 @@ description: Provides instructions to implement, integrate, or configure
   when the task involves setting up banner ads in a mobile application.
 metadata:
   version: 1.0.0
+  category: GoogleAds
 ---
-
 # Google Mobile Ads SDK - Banner Ads
 
 Banner ads are rectangular image or text ads that occupy a spot within an app's

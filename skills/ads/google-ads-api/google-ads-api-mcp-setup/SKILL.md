@@ -8,8 +8,8 @@ compatibility:
 metadata:
   author: google-ads-api-team
   version: "1.0"
+  category: GoogleAds
 ---
-
 # Google Ads API MCP Server Installation
 
 This skill provides a structured setup guide to install, configure, and integrate the official open-source **[Google Ads Model Context Protocol (MCP) Server](https://github.com/googleads/google-ads-mcp)**.
@@ -55,6 +55,7 @@ The Google Ads MCP Server requires the same five parameters as the standard clie
     *   **Note:** Essential if your OAuth credentials belong to a Manager Account administrator rather than directly to the client account.
 
 ---
+
 *Once you have verified that all five parameters are present and formatted correctly, proceed to Step 2.*
 
 ## Step 2: Install Prerequisites (Python & pipx)
@@ -63,6 +64,7 @@ You **MUST** verify if the prerequisites are already installed before proposing 
 
 ### 1. Verification Phase (Agent Action)
 You **MUST** run the following commands to check the environment:
+
 1.  Check Python version: `python3 --version` (Verify it is `3.12+`).
 2.  Check if pipx is installed: `pipx --version`.
 
@@ -77,6 +79,7 @@ Detect the operating system and propose the appropriate command to install `pipx
 
 #### macOS
 If the environment is macOS, propose:
+
 ```bash
 brew install pipx && pipx ensurepath
 # Or alternatively (if Homebrew is not installed):
@@ -85,6 +88,7 @@ pip install pipx && pipx ensurepath
 
 #### Windows (PowerShell)
 If the environment is Windows, propose:
+
 ```powershell
 scoop install pipx
 # Or alternatively:
@@ -93,6 +97,7 @@ pip install pipx && pipx ensurepath
 
 #### Linux (Ubuntu/Debian)
 If the environment is Linux, propose:
+
 ```bash
 sudo apt install pipx && pipx ensurepath
 ```
@@ -117,6 +122,7 @@ pipx install google-ads-mcp
 ```
 
 If the user explicitly requests the latest development version from GitHub, propose:
+
 ```bash
 # Install development version from GitHub (Only if explicitly requested)
 pipx install git+https://github.com/googleads/google-ads-mcp.git
@@ -125,6 +131,7 @@ pipx install git+https://github.com/googleads/google-ads-mcp.git
 ### 2. Verification Phase
 
 To verify the installation, execute:
+
 ```bash
 google-ads-mcp --help
 ```
@@ -133,8 +140,10 @@ google-ads-mcp --help
 `pipx` installs binaries into a specific local directory (typically `~/.local/bin`). If the user's shell configuration (e.g., `.bashrc` or `.zshrc`) hasn't been reloaded, `google-ads-mcp` might not be found in the current `PATH`.
 
 If `google-ads-mcp --help` fails with a "command not found" error:
+
 1. **DO NOT** assume the installation failed or get stuck in an installation loop.
 2. Verify the installation using the absolute path to the `pipx` binary directory:
+   
    ```bash
    ~/.local/bin/google-ads-mcp --help
    ```
@@ -150,6 +159,7 @@ If `google-ads-mcp --help` fails with a "command not found" error:
 > 3. [ ] **Explain Stdio Transport:** You **MUST** explicitly explain the communication architecture using the exact terminology: state that the MCP server communicates via the **Model Context Protocol (MCP)** using **standard input/output (`stdio`) transport**. Do not omit the words "standard input/output" or "transport".
 
 #### Key points to explain to the user regarding Stdio Transport:
+
 *   **Subprocess Execution:** The host client (e.g., Cursor, Claude Desktop) launches the MCP server as a background subprocess.
 *   **Command-Line Launch:** The host client must be configured with the exact command to run the server (`google-ads-mcp`) and the environment variables containing your Google Ads credentials.
 *   **No Network Ports:** Because it uses `stdio`, the server does not listen on a network port (like HTTP or WebSockets). Communication is handled entirely via stdin/stdout piping.
@@ -225,6 +235,7 @@ Add the server entry to your Claude configuration file.
     *   **Linux:** `~/.config/Claude/claude_desktop_config.json`
 
 *   **Configuration JSON:**
+    
     ```json
     {
       "mcpServers": {
@@ -250,6 +261,7 @@ Add the server entry to your Claude configuration file.
 ---
 
 ### 2. Cursor AI Editor
+
 1.  Open Cursor and navigate to: **Settings 🡒 Features 🡒 MCP**.
 2.  Click **+ New MCP Server**.
 3.  Configure the following fields:
@@ -276,12 +288,15 @@ When answering questions about connecting the Google Ads MCP server to Antigravi
 *   **No Custom Compilation**: Explicitly clarify that because Antigravity natively supports MCP, it **does not** require a separate custom plugin compilation or custom extension loading to use the MCP server.
 
 #### Verifying Activation in Antigravity CLI
+
 1.  **Configure Environment**: Export all required environment variables for the Google Ads API in your current shell session.
 2.  **Start Antigravity CLI**: Launch the CLI:
+    
     ```bash
     agy
     ```
 3.  **Verify MCP Status**: Inside the Antigravity CLI prompt, run the `/mcp` command to list active tools and servers:
+    
     ```text
     /mcp
     ```
@@ -297,19 +312,24 @@ When answering questions about connecting the Google Ads MCP server to Antigravi
 Instead of hosting this MCP server locally, you can host it on Google Cloud Run or on any other cloud-based infrastructure. This is useful if you want to share the server across different agents or run it as a web service.
 
 ### 1. Prerequisites
+
 1. A Google Cloud project.
 2. The [`gcloud` command-line tool](https://cloud.google.com/cli) installed, authenticated, and with an active project configured:
+   
    ```bash
    gcloud config set project YOUR_PROJECT_ID
    ```
 
 ### 2. Build and Push a Docker Image
 You can use Cloud Build to build and push the image to the Artifact Registry without needing Docker installed locally:
+
 1. Create a repository in Artifact Registry:
+   
    ```bash
    gcloud artifacts repositories create mcp-servers --repository-format=docker --location=us-central1
    ```
 2. Build and submit the image:
+   
    ```bash
    gcloud builds submit --tag us-central1-docker.pkg.dev/YOUR_PROJECT_ID/mcp-servers/google-ads-mcp:latest .
    ```
@@ -317,6 +337,7 @@ You can use Cloud Build to build and push the image to the Artifact Registry wit
 
 ### 3. Deploy to Google Cloud Run
 Deploy the container, ensuring you set `FASTMCP_HOST=0.0.0.0` and all required environment variables:
+
 ```bash
 gcloud run deploy google-ads-mcp \
   --image us-central1-docker.pkg.dev/YOUR_PROJECT_ID/mcp-servers/google-ads-mcp:latest \
@@ -328,6 +349,7 @@ gcloud run deploy google-ads-mcp \
 
 ### 4. Configure the MCP Client
 After deployment, update your MCP client configuration (for example, `~/.gemini/settings.json` or Claude/Cursor config) to use the Cloud Run URL:
+
 ```json
 {
   "mcpServers": {
@@ -356,6 +378,7 @@ the Antigravity CLI prompt:
 ```bash
 agy
 ```
+
 ```text
 /mcp
 ```
@@ -375,6 +398,7 @@ to replace `1234567890` with your actual Google Ads Customer ID (without hyphens
 
 ### 3. Expected Behavior (Success Criteria)
 A successful integration will trigger the following flow:
+
 1.  **Tool Discovery**: The AI assistant automatically detects the `google-ads-mcp`
     server tools.
 2.  **Execution**: The assistant formulates the parameters, calls the server via
@@ -385,6 +409,7 @@ A successful integration will trigger the following flow:
 
 ### 4. Troubleshooting
 If the assistant fails to retrieve the data or connect to the MCP server, check the following common failure points:
+
 *   **Authentication/Permission Errors (IDE Environment Gotcha)**: External IDEs (like Cursor or VS Code) often run in isolated environments or background processes that do not inherit shell RC files (e.g., `~/.bashrc` or `~/.zshrc`). Ensure your `GOOGLE_ADS_DEVELOPER_TOKEN`, OAuth client credentials, and `GOOGLE_ADS_REFRESH_TOKEN` are explicitly configured where the IDE can access them (prefer Method A: setting them directly in the MCP client's JSON configuration).
 *   **"Tools not found" / Mandatory Client Restart**: MCP servers are only loaded on application startup; changes to configuration files will not take effect dynamically. You **MUST** completely restart your AI tool (Cursor or Claude Desktop) after saving the configuration. Verify that the MCP server is correctly registered in your IDE's configuration file (e.g., the `mcpServers` block in Cursor's `project.json` or Claude Desktop's config).
 *   **PATH and Executable Issues (`spawn pipx ENOENT`)**: If the connection fails or logs show `spawn pipx ENOENT`, `pipx` is not in the system PATH of the IDE's environment. Provide the absolute path to `pipx` in the "command" field of your config (e.g., `/usr/local/bin/pipx` or `~/.local/bin/pipx`).
@@ -414,11 +439,13 @@ Once the Google Ads MCP Server is installed and successfully connected to your A
 When assisting a user or formulating queries, refer to the following tool definitions and best practices:
 
 ### 1. `list_accessible_customers`
+
 *   **Purpose:** Returns the list of Google Ads customer IDs and account names that are accessible to the authenticated user.
 *   **How to Use:** Call this tool first when starting a new session or when the target customer ID is unknown. It requires no arguments.
 *   **Example Intent:** *"What Google Ads accounts do I have access to?"*
 
 ### 2. `get_resource_metadata`
+
 *   **Purpose:** Retrieves detailed structural metadata about a specific Google Ads API resource type (e.g., `campaign`, `ad_group`, `customer`).
 *   **How to Use:** Call this tool to inspect the schema, available fields, metrics, and segments for a resource before constructing a GAQL query.
 *   **Arguments:**
@@ -426,6 +453,7 @@ When assisting a user or formulating queries, refer to the following tool defini
 *   **Example Intent:** *"What fields and metrics can I query for an ad group?"*
 
 ### 3. `search`
+
 *   **Purpose:** Executes a Google Ads Query Language (GAQL) query to fetch resource metrics, attributes, segments, and status.
 *   **How to Use:** Construct a valid GAQL query string based on the resource metadata and execute the search against a specific customer account.
 *   **Arguments:**

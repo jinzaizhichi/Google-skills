@@ -6,6 +6,8 @@ description: >-
   verifying GKE production readiness, or checking configurations against
   GKE defaults. Don't use for setting up node autoscaling specifically (use
   gke-scaling instead).
+metadata:
+  category: Containers
 ---
 
 # GKE Golden Path Configuration

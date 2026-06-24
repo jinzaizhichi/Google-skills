@@ -6,8 +6,8 @@ description: Provides instructions for integrating the Google Mobile Ads (GMA)
   SDK or mobile ads framework in an Android, iOS, or Unity application.
 metadata:
   version: 1.1.0
+  category: GoogleAds
 ---
-
 # Google Mobile Ads SDK - Install
 
 ## Workflow

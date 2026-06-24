@@ -7,6 +7,8 @@ description: >-
   clusters, setting up Gateway API, planning GKE IP ranges, or configuring GKE
   ingress/egress. Don't use for basic application routing that does not
   require dedicated network configuration.
+metadata:
+  category: Networking
 ---
 
 # GKE Networking

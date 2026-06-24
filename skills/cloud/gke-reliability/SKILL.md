@@ -6,6 +6,8 @@ description: >-
   PDBs, or configuring GKE health probes (liveness, readiness, startup). Don't
   use for disaster recovery setup or full cluster backups (use gke-backup-dr
   instead).
+metadata:
+  category: Containers
 ---
 
 # GKE Reliability

@@ -6,6 +6,8 @@ description: >-
   GKE for the first time, or containerizing an app for GKE. Don't use for
   general GKE cluster administration or upgrades (use gke-basics or
   gke-upgrades instead).
+metadata:
+  category: Containers
 ---
 
 # GKE App Onboarding

@@ -7,6 +7,8 @@ description: >-
   Security Standards, and IAM roles. Use when securing GKE clusters, setting up
   Workload Identity, hardening RBAC configurations, or configuring GKE secrets.
   Don't use for general network routing configuration (use gke-networking instead).
+metadata:
+  category: Security
 ---
 
 # GKE Security

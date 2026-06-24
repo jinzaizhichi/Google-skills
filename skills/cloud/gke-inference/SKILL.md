@@ -5,6 +5,8 @@ description: >-
   model servers. Use when deploying GKE inference servers, configuring GKE GPU
   resources for inference, or deploying LLMs on GKE. Don't use for generic
   batch jobs or HPC task queues (use gke-batch-hpc instead).
+metadata:
+  category: Containers
 ---
 
 # GKE AI/ML Inference

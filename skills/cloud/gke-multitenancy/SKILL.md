@@ -7,6 +7,8 @@ description: >-
   namespaces, setting up resource quotas, or isolating GKE teams. Don't use
   for single-tenant cluster configuration or general deployment instructions
   (use gke-basics or gke-app-onboarding instead).
+metadata:
+  category: Containers
 ---
 
 # GKE Multi-Tenancy

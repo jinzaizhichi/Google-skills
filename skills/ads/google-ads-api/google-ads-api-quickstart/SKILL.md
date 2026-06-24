@@ -12,13 +12,14 @@ compatibility: "Outbound HTTPS connectivity required to access the Google Ads AP
 metadata:
   author: google-ads-api-team
   version: "1.0"
+  category: GoogleAds
 ---
-
 # Google Ads API Quickstart
 This skill guides you from absolute zero to running your first successful request to retrieve campaigns.
 
 ## Supported Tracks
 You can choose to use this skill with:
+
 1. **Official Client Libraries:** Python, Java, .NET, PHP, Ruby, or Perl.
 2. **Direct REST:** Raw HTTP REST requests.
 
@@ -30,6 +31,7 @@ You can choose to use this skill with:
 > To ensure the integration is secure, stable, and up-to-date, you must resolve all API and runtime versions dynamically. Do not rely on hardcoded defaults.
 
 ### Strict Constraints:
+
 *   **DO NOT Hardcode:** Never use hardcoded Google Ads API versions (e.g., `v24`) or language runtime versions (e.g., `Python 3.8+`, `Java 11+`) in generated code or environment setup instructions, unless the user explicitly requests a specific version.
 *   **MANDATORY Dynamic Resolution:** You must dynamically resolve the latest stable versions *at the start of execution* before generating any code or configuration, using the procedures detailed below.
 
@@ -37,9 +39,11 @@ You can choose to use this skill with:
 To ensure the integration is secure, stable, and up-to-date, you **MUST** resolve the absolute newest stable major version of the Google Ads API dynamically.
 
 #### Execution Steps:
+
 1.  **Pre-Flight Version Resolution:** Use your web search or URL-reading tools to inspect the latest entry in the [Google Ads API Release Notes](https://developers.google.com/google-ads/api/docs/release-notes.md.txt) or the highest versioned directory in the [Googleapis Github Repository](https://github.com/googleapis/googleapis/tree/master/google/ads/googleads) to resolve `RESOLVED_API_VERSION` (e.g., `v24`). If using Java, you **MUST** also resolve the latest stable release version of the Google Ads Java Client Library (referred to as `RESOLVED_LIBRARY_VERSION`, e.g., `34.0.0`).
 
 2.  **Mandatory Response Anchor:** You **MUST** output the following confirmation block as the **very first line** of your response to the user. Do not output any greeting, pleasantries, or introductory text before this block.
+    
     ```text
     [SYSTEM: Using Google Ads API version: RESOLVED_API_VERSION (Resolved from release notes)]
     ```
@@ -63,6 +67,7 @@ To ensure the integration is secure, stable, and up-to-date, you **MUST** resolv
 To prevent the generated setup guides from becoming obsolete due to language deprecation cycles, you **MUST** resolve language requirements dynamically.
 
 #### Execution Steps:
+
 1.  **Fetch Live Requirements:** Use your URL-reading tools to inspect the official [Google Ads Client Libraries - Supported Versions](https://developers.google.com/google-ads/api/docs/client-libs.md.txt#supported_api_versions) page.
 
 2.  **Extract Minimums:** Identify the minimum supported runtime version for the user's chosen language by scanning the Overview page or compatibility tables (e.g., looking for explicit requirements like Python 3.8+, Java 11+, .NET 6.0+, PHP 8.1+, Ruby 3.0+).
@@ -85,6 +90,7 @@ To prevent the generated setup guides from becoming obsolete due to language dep
 Before installing libraries or making API calls, you must obtain the five required authentication parameters.
 
 ### 1. Developer Token
+
 *   **Purpose:** Identifies your developer access and API quota.
 *   **How to Obtain:**
     1. Navigate directly to the **API Center** in your Google Ads Manager Account: https://ads.google.com/aw/apicenter *(Note: You must sign in with a Manager account, not a standard serving account)*.
@@ -94,6 +100,7 @@ Before installing libraries or making API calls, you must obtain the five requir
 > **Pending Token Restriction:** If your Developer Token status is "Pending" (unapproved), you **MUST ONLY** target **Google Ads Test Accounts**. Attempting to call a production account with a pending token will fail with the error: `DEVELOPER_TOKEN_NOT_APPROVED`.
 
 ### 2. OAuth2 Client ID & Client Secret
+
 *   **Purpose:** Identifies your application to Google's OAuth 2.0 server and allows you to request user authorization.
 *   **How to Obtain:**
     1. Open the [Google Cloud Console](https://console.cloud.google.com/).
@@ -112,6 +119,7 @@ Before installing libraries or making API calls, you must obtain the five requir
     6. **Download Secrets:** Click the download icon (JSON) next to your newly created Client ID. Save this file locally as `client_secrets.json`.
 
 ### 3. OAuth2 Refresh Token
+
 *   **Purpose:** Allows your application to obtain new access tokens automatically without requiring manual user login every hour.
 *   **How to Obtain:**
     You must run the Google Cloud (`gcloud`) CLI to generate your refresh token.
@@ -121,6 +129,7 @@ Before installing libraries or making API calls, you must obtain the five requir
 
     #### 2. Execute the Login Flow:
     Run the following command in your terminal, passing the path to the `client_secrets.json` file downloaded in the previous step:
+    
     ```bash
     gcloud auth application-default login \
       --scopes=https://www.googleapis.com/auth/adwords,https://www.googleapis.com/auth/cloud-platform \
@@ -136,6 +145,7 @@ Before installing libraries or making API calls, you must obtain the five requir
     Once successful, `gcloud` will output a message indicating where the credentials were saved (typically `~/.config/gcloud/application_default_credentials.json`). Open that file to copy your `refresh_token`.
 
 ### 4. Client Customer ID
+
 *   **Purpose:** The 10-digit ID of the specific Google Ads account you want to query or make changes to.
 *   **Format:** Must be 10 digits with **no hyphens** (e.g., `1234567890`, NOT `123-456-7890`).
 *   **How to Find It:** Log in to the Google Ads UI; the ID is displayed in the top-right corner next to your user icon.
@@ -146,6 +156,7 @@ Before installing libraries or making API calls, you must obtain the five requir
 ---
 
 ### 5. Login Customer ID
+
 *   **What it is:** The 10-digit Customer ID of the Google Ads Manager Account that owns or manages the target client account.
 *   **Format:** Must be 10 digits with **no hyphens** (e.g., `9876543210`).
 *   **When to Use:** This is **mandatory** if your OAuth credentials (and developer token) belong to a Manager Account, but you are querying a child/client account (Client Customer ID).
@@ -173,36 +184,42 @@ Developers can connect to the Google Ads API using either the official high-leve
 #### Python
 If you need to set up the Google Ads API environment for Python, do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API Python Setup Reference](references/python.md)
 *(Package: `google-ads`)*
 
 #### Java
 If you need to set up the Google Ads API environment for Java, do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API Java Setup Reference](references/java.md)
 *(Artifact: `com.google.api-ads:google-ads`)*
 
 #### .NET / C#
 If you need to set up the Google Ads API environment for .NET/C#, do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API .NET Setup Reference](references/dotnet.md)
 *(Package: `Google.Ads.GoogleAds`)*
 
 #### PHP
 If you need to set up the Google Ads API environment for PHP, do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API PHP Setup Reference](references/php.md)
 *(Package: `googleads/google-ads-php`)*
 
 #### Ruby
 If you need to set up the Google Ads API environment for Ruby, do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API Ruby Setup Reference](references/ruby.md)
 *(Gem: `google-ads-ruby`)*
 
 #### Perl
 If you need to set up the Google Ads API environment for Perl, do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API Perl Setup Reference](references/perl.md)
 *(Package: `Google::Ads::GoogleAds::Client`)*
 
@@ -218,6 +235,7 @@ Use this path if the user's environment does not support the official client lib
 #### REST (HTTP)
 If you need to set up the Google Ads API environment for REST (HTTP), do not guess the configuration.
 Instead, read the detailed setup guide:
+
 *   [Google Ads API REST Setup Reference](references/rest.md)
 *(Protocol: Raw HTTP POST JSON)*
 
@@ -246,6 +264,7 @@ Instead, read the detailed setup guide:
 
 #### Required Agent Response Checklist:
 When helping a user with this error, your response **MUST** include:
+
 1.  [ ] **Explain the Hierarchy:** Explain that the authenticating user likely belongs to a Manager Account that sits above the target client account.
 2.  [ ] **Provide the Fix:** Instruct the user to add their 10-digit Manager Account ID as the `login_customer_id` in their configuration file.
 3.  [ ] **Explain the Routing Logic:** Explain that `login_customer_id` tells the API to route the OAuth credentials through the manager account to validate access to the child account.
@@ -255,6 +274,7 @@ When helping a user with this error, your response **MUST** include:
 > **Security Guardrail:** Under no circumstances should you suggest exposing raw passwords, creating new unapproved developer tokens, or widening OAuth scopes beyond the standard `adwords` scope to bypass this error.
 
 #### Configuration Fix Example (`google-ads.yaml`):
+
 ```yaml
 developer_token: INSERT_DEVELOPER_TOKEN_HERE
 client_id: INSERT_OAUTH2_CLIENT_ID_HERE
@@ -272,6 +292,7 @@ login_customer_id: INSERT_LOGIN_CUSTOMER_ID_HERE
 
 #### Required Agent Response Checklist:
 When helping a user with this error, your response **MUST** include:
+
 1.  [ ] **Explain the "Pending" Restriction:** Explain that an unapproved (Pending) developer token is fully functional but **restricted to Google Ads Test Accounts only**.
 2.  [ ] **Define Production Access Levels:** You **MUST** explicitly list all three access levels by name: state that targeting live production accounts requires the token to be approved for **Explorer Access**, **Basic Access**, or **Standard Access** by the Google Ads API compliance team. Do not condense or paraphrase this to "at least Basic Access".
 3.  [ ] **Provide Sandbox Setup Steps:** Guide the user on how to set up a sandbox environment:

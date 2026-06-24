@@ -1,5 +1,7 @@
 ---
 name: agent-platform-alert-configuration
+metadata:
+  category: AiAndMachineLearning
 description: >-
   Configures best-practice alerting policies for Google Cloud Vertex AI / Agent
   Platform agents on Agent Runtime. Use when analyzing, writing, or deploying

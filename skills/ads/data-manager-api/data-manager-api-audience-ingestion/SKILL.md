@@ -9,8 +9,8 @@ description: >-
   events or conversions (use the data-manager-api-event-ingestion skill).
 metadata:
   version: 1.0
+  category: GoogleAds
 ---
-
 # Data Manager API Audience Ingestion
 
 ## Core Directives
@@ -98,11 +98,13 @@ for detailed installation instructions.
 
 1.  Navigate to the `data-manager-python` directory and install the utility
     library:
+    
     ```shell
     pip install .
     ```
 2.  Declare a dependency in your project's `requirements.txt` file (replacing
     `VERSION` with the identified version):
+    
     ```
    google-ads-datamanager-util=VERSION
     ```
@@ -111,6 +113,7 @@ for detailed installation instructions.
 
 1.  Navigate to the `data-manager-java` directory.
 2.  Build and publish the utility library to your local Maven repository:
+
    ```shell
    ./gradlew data-manager-util:install
    ```
@@ -132,20 +135,24 @@ for detailed installation instructions.
 ##### Node
 
 1.  Navigate to the `data-manager-node` directory and install dependencies:
+
    ```shell
    npm install
    ```
 2.  Navigate to the `util` directory:
+
    ```shell
    cd util
    ```
 3.  Pack the utility library into a `.tgz` archive:
+
    ```shell
    npm pack
    ```
 4.  Declare a dependency in your Node.js project's `package.json` pointing to
     the path of the generated `.tgz` archive (replacing `VERSION` with the
     identified version):
+
    ```json
    {
       "dependencies": {
@@ -158,11 +165,13 @@ for detailed installation instructions.
 
 1.  Navigate to the `data-manager-php` directory.
 2.  Resolve dependencies for the library:
+
    ```shell
    composer update --prefer-dist
    ```
 3.  Update your project's `composer.json` to declare a dependency on the utility
     library using a path repository:
+
    ```json
     {
         "repositories": [
@@ -181,6 +190,7 @@ for detailed installation instructions.
 
 In your .NET project, declare a `ProjectReference` dependency pointing to the
 cloned library's `.csproj` path:
+
 ```xml
 <ProjectReference Include="\path\to\cloned\Google.Ads.DataManager.Util\src\Google.Ads.DataManager.Util.csproj" />
 ```
@@ -245,6 +255,7 @@ Implement the ingestion logic using the following checkpoints:
     (emails, phone numbers, addresses).
 
     **Python Example:**
+    
     ```python
     from google.ads.datamanager_util import Formatter
     from google.ads.datamanager_util.format import Encoding

@@ -3,6 +3,8 @@ name: gke-backup-dr
 description: >-
   Configures GKE Backup Plans and restore workflows. Use for backup policies,
   disaster recovery, or GKE cluster restores. Don't use for database backups.
+metadata:
+  category: Storage
 ---
 
 # GKE Backup & Disaster Recovery

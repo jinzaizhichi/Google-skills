@@ -6,8 +6,8 @@ description: Provides instructions for implementing, integrating, or configuring
   ads. Don't use for "rewarded interstitial" ads.
 metadata:
   version: 1.0.0
+  category: GoogleAds
 ---
-
 # Google Mobile Ads SDK - Interstitial Ads
 
 Interstitial ads show full-page ads for users on mobile apps. Interstitial ads

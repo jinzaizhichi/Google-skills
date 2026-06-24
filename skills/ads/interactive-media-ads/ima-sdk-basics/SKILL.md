@@ -10,8 +10,8 @@ license: Apache-2.0
 metadata:
   author: Google LLC
   version: "1.0.0"
+  category: GoogleAds
 ---
-
 # IMA SDK basics
 
 The Google IMA SDK (Interactive Media Ads) lets you load in-stream video and
