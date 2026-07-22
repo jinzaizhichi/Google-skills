@@ -38,8 +38,10 @@ requirements. **Do not load multiple GKE skills unless explicitly required.**
 :                      : Autoscaler, NAP             :                         :
 | Compute Classes      | ComputeClass, Spot          | `gke-compute-classes`   |
 :                      : fallback, GPU/TPU nodes     :                         :
-| Cost Optimization    | Spot VMs, rightsizing, cost | `gke-cost-optimization` |
-:                      : allocation                  :                         :
+| Cost Analysis        | BigQuery billing exports,   | `gke-cost-analysis`     |
+:                      : budgets, live monitoring    :                         :
+| Cost Optimization    | Spot VMs, rightsizing,      | `gke-cost-optimization` |
+:                      : quotas                      :                         :
 | AI/ML Workloads      | LLM, GPU/TPU inference,     | `gke-inference`         |
 :                      : serving, vLLM               :                         :
 | Cluster Upgrades     | upgrade, maintenance        | `gke-upgrades`          |
