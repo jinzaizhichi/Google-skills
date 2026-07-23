@@ -121,5 +121,5 @@ Dataplane V2 (golden path) provides built-in Network Policy enforcement — no
 additional addon needed. Apply default-deny per namespace, then allow specific
 flows.
 
-> See the `gke-security` skill for default-deny policy and the
+> See the `gke-workload-security` skill for default-deny policy and the
 > `gke-multitenancy` skill for per-team allow policies.
